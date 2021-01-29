@@ -1,0 +1,251 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset="utf-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no")
+    meta(name="author" content="Nicolas Augereau")
+    meta(charset="utf-8")
+    meta( http-equiv="X-UA-Compatible" content="IE=edge,chrome=1")
+    title Rapport des tests automatisés
+    style.
+      @import url("https://fonts.googleapis.com/css?family=Montserrat:300,400,500,500i,600,700");
+        :root{--blue: #005792;--indigo: #7f3ddb;--purple: #9964e3;--pink: #e54e9a;--red: #fd5f00;--orange: #ff7d47;--yellow: #fda700;--green: #68ca66;--teal: #21AE8C;--cyan: #17a2b8;--white: #fff;--gray: #798892;--gray-dark: #3c484f;--primary: #005792;--secondary: #798892;--passed: #21AE8C;--info: #1A86D0;--pending: #fda700;--danger: #fd5f00;--light: #f8f9fa;--dark: #3c484f;--primary-light: #dee4ee;--passed-light: #ecfaec;--info-light: #f2fafa;--pending-light: #fdf7e6;--danger-light: #fff2ef;--inverse: #002B49;--gray: #d7dfe6;--default: #e9ecef;--breakpoint-xs: 0;--breakpoint-sm: 576px;--breakpoint-md: 768px;--breakpoint-lg: 992px;--breakpoint-xl: 1200px;--font-family-sans-serif: "Montserrat", sans-serif;--font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace}
+        *,*::before,*::after{box-sizing:border-box}html{font-family:sans-serif;line-height:1.15;-webkit-text-size-adjust:100%;-webkit-tap-highlight-color:rgba(0,0,0,0)}figcaption,figure,footer,header,main,section{display:block}body{margin:0;font-family:"Montserrat",sans-serif;font-size:1rem;font-weight:300;line-height:1.55;color:#495057;text-align:left;background-color:#f9fbfd}[tabindex="-1"]:focus:not(:focus-visible){outline:0 !important}h1,h2,h4,h5{margin-top:0;margin-bottom:.5rem}p{margin-top:0;margin-bottom:1rem}small{font-size:76%;color:#798892}a{color:#218bc3;text-decoration:none;background-color:transparent}a:hover{color:#165c82;text-decoration:underline}figure{margin:0 0 1rem}table{border-collapse:collapse}th{text-align:inherit}label{display:inline-block;margin-bottom:.5rem}
+        button{border-radius:0; min-width:80px}button:focus{outline:1px dotted;outline:5px auto -webkit-focus-ring-color}input,button{margin:0;font-family:inherit;font-size:inherit;line-height:inherit}button,input{overflow:visible}button{text-transform:none}button{-webkit-appearance:button}button:not(:disabled),[type="button"]:not(:disabled),[type="reset"]:not(:disabled),[type="submit"]:not(:disabled){cursor:pointer}button::-moz-focus-inner{padding:0;border-style:none}input[type="radio"]{box-sizing:border-box;padding:0}::-webkit-file-upload-button{font:inherit;-webkit-appearance:button}h1,h2,h4,h5{margin-bottom:.5rem;font-weight:400;line-height:1.2}h1{font-size:2.5rem}h2{font-size:2rem}h4{font-size:1.5rem}h5{font-size:1.25rem}small{font-size:76%;font-weight:400}
+        .row{width:100%;display:flex;flex-wrap:wrap;margin-right:-20px;margin-left:-20px}.col-6,.col-10,.col-sm-5,.col-sm-7,.col-sm-12,.col-md-4,.col-md-6,.col-lg-6,.col-xl-2,.col-xl-4{position:relative;width:100%;padding-right:20px;padding-left:20px}.col-6{flex:0 0 50%;max-width:50%}.col-10{flex:0 0 83.3333333333%;max-width:83.3333333333%}
+        @media (min-width: 576px){.col-sm-5{flex:0 0 41.6666666667%;max-width:41.6666666667%}.col-sm-7{flex:0 0 58.3333333333%;max-width:58.3333333333%}.col-sm-12{flex:0 0 100%;max-width:100%}}
+        @media (min-width: 768px){.col-md-4{flex:0 0 33.3333333333%;max-width:33.3333333333%}.col-md-6{flex:0 0 50%;max-width:50%}}
+        @media (min-width: 992px){.col-lg-6{flex:0 0 50%;max-width:50%}}
+        @media (min-width: 1200px){.col-xl-2{flex:0 0 16.6666666667%;max-width:16.6666666667%}.col-xl-4{flex:0 0 33.3333333333%;max-width:33.3333333333%}}
+        .table{width:100%;margin-bottom:1rem;color:#495057}.table th,.table td{padding:.75rem;vertical-align:top;border-top:1px solid #d6dee5}.table thead th{vertical-align:bottom;border-bottom:2px solid #d6dee5}.table-striped tbody tr:nth-of-type(odd){background-color:#f8f9fa}.was-validated .custom-control-input:valid:focus:not(:checked) ~ .custom-control-label::before,.custom-control-input.is-valid:focus:not(:checked) ~ .custom-control-label::before{border-color:#21AE8C}.was-validated .custom-control-input:invalid:focus:not(:checked) ~ .custom-control-label::before,.custom-control-input.is-invalid:focus:not(:checked) ~ .custom-control-label::before{border-color:#fd5f00}.btn{display:inline-block;font-weight:400;color:#495057;text-align:center;vertical-align:middle;user-select:none;background-color:transparent;border:1px solid transparent;padding:.375rem .75rem;font-size:1rem;line-height:1.55;border-radius:.3rem;transition:color 0.15s ease-in-out,background-color 0.15s ease-in-out,border-color 0.15s ease-in-out,box-shadow 0.15s ease-in-out}
+        @media (prefers-reduced-motion: reduce){.btn{transition:none}}.btn:hover{color:#495057;text-decoration:none}.btn:focus{outline:0;box-shadow:0 0 0 .2rem rgba(0,87,146,0.25)}.btn:disabled{opacity:.65;box-shadow:none}.btn:not(:disabled):not(.disabled){cursor:pointer}.btn:not(:disabled):not(.disabled):active,.btn:not(:disabled):not(.disabled).active{box-shadow:inset 0 3px 5px rgba(0,0,0,0.125)}.btn:not(:disabled):not(.disabled):active:focus,.btn:not(:disabled):not(.disabled).active:focus{box-shadow:0 0 0 .2rem rgba(0,87,146,0.25),inset 0 3px 5px rgba(0,0,0,0.125)}.btn-primary:not(:disabled):not(.disabled):active,.btn-primary:not(:disabled):not(.disabled).active{color:#fff;background-color:#00395f;border-color:#003152}.btn-primary:not(:disabled):not(.disabled):active:focus,.btn-primary:not(:disabled):not(.disabled).active:focus{box-shadow:inset 0 3px 5px rgba(0,0,0,0.125),0 0 0 .2rem rgba(38,112,162,0.5)}            
+        .btn-passed{color:#fff;background-color:#26b526;border-color:#1bbd1b;box-shadow:inset 0 1px 0 rgba(255,255,255,0.15),0 1px 1px rgba(0,0,0,0.075)}.btn-passed:hover{color:#fff;background-color:#1b8e72;border-color:#19836a}.btn-passed:focus{color:#fff;background-color:#1b8e72;border-color:#19836a;box-shadow:inset 0 1px 0 rgba(255,255,255,0.15),0 1px 1px rgba(0,0,0,0.075),0 0 0 .2rem rgba(66,186,157,0.5)}.btn-passed:disabled{color:#fff;background-color:#21AE8C;border-color:#21AE8C}.btn-passed:not(:disabled):not(.disabled):active,.btn-passed:not(:disabled):not(.disabled).active{color:#fff;background-color:#19836a;border-color:#177861}.btn-passed:not(:disabled):not(.disabled):active:focus,.btn-passed:not(:disabled):not(.disabled).active:focus{box-shadow:inset 0 3px 5px rgba(0,0,0,0.125),0 0 0 .2rem rgba(66,186,157,0.5)}
+        .btn-info{color:#fff;background-color:#1A86D0;border-color:#1A86D0;box-shadow:inset 0 1px 0 rgba(255,255,255,0.15),0 1px 1px rgba(0,0,0,0.075)}.btn-info:hover{color:#fff;background-color:#1670ae;border-color:#1469a3}.btn-info:focus{color:#fff;background-color:#1670ae;border-color:#1469a3;box-shadow:inset 0 1px 0 rgba(255,255,255,0.15),0 1px 1px rgba(0,0,0,0.075),0 0 0 .2rem rgba(60,152,215,0.5)}.btn-info:disabled{color:#fff;background-color:#1A86D0;border-color:#1A86D0}.btn-info:not(:disabled):not(.disabled):active,.btn-info:not(:disabled):not(.disabled).active{color:#fff;background-color:#1469a3;border-color:#136197}.btn-info:not(:disabled):not(.disabled):active:focus,.btn-info:not(:disabled):not(.disabled).active:focus{box-shadow:inset 0 3px 5px rgba(0,0,0,0.125),0 0 0 .2rem rgba(60,152,215,0.5)}
+        .btn-pending{color:#fff;background-color:#f7bd1e;border-color:#e6ac0d;box-shadow:inset 0 1px 0 rgba(255,255,255,0.15),0 1px 1px rgba(0,0,0,0.075)}.btn-pending:hover{color:#fff;background-color:#d6ca1c;border-color:#d1ce23}
+        .btn-failed{color:#fff;background-color:#fa0f36;border-color:#e90e25;box-shadow:inset 0 1px 0 rgba(255,255,255,0.15),0 1px 1px rgba(0,0,0,0.075)}.btn-failed:hover{color:#fff;background-color:#d75100;border-color:#ca4c00}.btn-failed:focus{color:#fff;background-color:#d75100;border-color:#ca4c00;box-shadow:inset 0 1px 0 rgba(255,255,255,0.15),0 1px 1px rgba(0,0,0,0.075),0 0 0 .2rem rgba(253,119,38,0.5)}.btn-failed:disabled{color:#fff;background-color:#fd5f00;border-color:#fd5f00}.btn-failed:not(:disabled):not(.disabled):active,.btn-failed:not(:disabled):not(.disabled).active{color:#fff;background-color:#ca4c00;border-color:#bd4700}.btn-failed:not(:disabled):not(.disabled):active:focus,.btn-failed:not(:disabled):not(.disabled).active:focus{box-shadow:inset 0 3px 5px rgba(0,0,0,0.125),0 0 0 .2rem rgba(253,119,38,0.5)}
+        .custom-control-input:focus:not(:checked) ~ .custom-control-label::before{border-color:#139fff}.custom-control-input:not(:disabled):active ~ .custom-control-label::before{color:#fff;background-color:#46b4ff;border-color:#46b4ff;box-shadow:}.close:not(:disabled):not(.disabled):hover,.close:not(:disabled):not(.disabled):focus{opacity:.75}.d-flex{display:flex !important}
+        .flex-wrap{flex-wrap:wrap !important}.justify-content-between{justify-content:space-between !important}.align-items-center{align-items:center !important}
+        @supports (position: sticky){}.h-100{height:100% !important}.mb-0{margin-bottom:0 !important}.p-0{padding:0 !important}.pb-0{padding-bottom:0 !important}.p-1{padding:.25rem !important}.pb-1{padding-bottom:.25rem !important}.px-3{padding-right:1rem !important}.pl-3,.px-3{padding-left:1rem !important}.pl-4{padding-left:1.5rem !important}.text-dark{color:#3c484f !important}.text-muted{color:#798892 !important}
+        @media print{*,*::before,*::after{text-shadow:none !important;box-shadow:none !important}a:not(.btn){text-decoration:underline}thead{display:table-header-group}tr{page-break-inside:avoid}p,h2{orphans:3;widows:3}h2{page-break-after:avoid}@page{size:a3}body{min-width:992px !important}.table{border-collapse:collapse !important}.table td,.table th{background-color:#fff !important}}
+        .table>thead>tr>th{border-top:none}.table>thead>tr>th{font-weight:600;text-transform:uppercase;border-bottom-width:1px}.table th,.table td{padding:0.55rem}.btn:not(.active){box-shadow:none !important}.btn-gray:not(:disabled):not(.disabled):active,.btn-gray:not(:disabled):not(.disabled).active{color:#29323a;background-color:#dae0e5;border-color:#c4ccd5}.btn-gray:not(:disabled):not(.disabled):active:focus,.btn-gray:not(:disabled):not(.disabled).active:focus{box-shadow:inset 0 3px 5px rgba(0,0,0,0.125),0 0 0 .2rem rgba(204,208,212,0.5)}.btn-outline:not(:disabled):not(.disabled):active,.btn-outline:not(:disabled):not(.disabled).active{color:#fff;background-color:rgba(0,0,0,0);border-color:#dfdfdf}.btn-outline:not(:disabled):not(.disabled):active:focus,.btn-outline:not(:disabled):not(.disabled).active:focus{box-shadow:inset 0 3px 5px rgba(0,0,0,0.125),0 0 0 .2rem rgba(255,255,255,0.5)}/*!
+        * Jasny Bootstrap v3.1.3 (http://jasny.github.io/bootstrap)
+        * Copyright 2012-2014 Arnold Daniels
+        * Licensed under Apache-2.0 (https://github.com/jasny/bootstrap/blob/master/LICENSE)
+        */.chart-tooltip{position:fixed;padding:.25rem .5rem;border:1px solid #f8f9fa;font-size:.9rem;background-color:#fff}
+        @-ms-viewport{width:auto}html,body{height:100%}html{font-size:14px}body{font-weight:300;overflow-x:hidden}th{font-weight:600}a{transition:background-color 0.15s ease-in-out,border-color 0.15s ease-in-out,color 0.15s ease-in-out}
+        @media (prefers-reduced-motion: reduce){a{transition:none}}.btn{transition:background-color 0.15s ease-in-out,border-color 0.15s ease-in-out}
+        @media (prefers-reduced-motion: reduce){.btn{transition:none}}.content-wrap{width:80%;margin:auto;transition:left .3s ease-in-out}
+        @media (prefers-reduced-motion: reduce){.content-wrap{width:80%;transition:none}}
+        @media (min-width: 768px){.content-wrap{width:80%}}.content-wrap{position:relative;z-index:0;height:100%}.content{position:relative;min-height:100%;margin:auto;background-color:#f9fbfd}
+        @media (max-width: 767.98px){.content{padding-left:20px;padding-right:20px}}
+        @media (min-width: 576px){.content{user-select:auto !important}}.content .content-footer{position:absolute;bottom:10px;color:#798892}.page-title{margin:0 0 2rem}.widget{position:relative;margin-bottom:40px;padding:20px 20px;background:#fff;border-radius:.25rem;box-shadow:4px 4px 30px 0px rgba(75,102,171,0.2)}.widget>header{margin:-20px -20px;padding:20px 20px}.widget>header h4,.widget>header h5{margin:0}.widget>header+.widget-body,.widget>header+.widget-body.p-0{margin-top:20px}.widget>.widget-body.p-0{margin:-20px -20px}.widget-controls{position:absolute;z-index:1;top:0;right:0;padding:14px;font-size:.875rem}.widget-controls>a{padding:1px 4px;border-radius:4px;color:rgba(0,0,0,0.4);transition:color 0.15s ease-in-out}
+        @media (prefers-reduced-motion: reduce){.widget-controls>a{transition:none}}.widget-controls>a:hover{color:rgba(0,0,0,0.1);text-decoration:none}.btn-inverse:not(:disabled):not(.disabled):active,.btn-inverse:not(:disabled):not(.disabled).active{color:#fff;background-color:#32373b;border-color:#151719}.btn-inverse:not(:disabled):not(.disabled):active:focus,.btn-inverse:not(:disabled):not(.disabled).active:focus{box-shadow:inset 0 3px 5px rgba(0,0,0,0.125),0 0 0 .2rem rgba(81,85,89,0.5)}
+        .btn-xs{padding:1px 5px;font-size:.75rem;line-height:1.5;border-radius:3px}
+        .analytics{display:flex;flex-wrap:wrap}.analytics .big-stat-title{width:220px;margin-right:0.5rem}.analytics .support{overflow-x:auto}.analytics .support .table th,.analytics .support .table tr{font-weight:400}.analytics .support .table th,.analytics .support .table td{padding-top:1rem;padding-bottom:1rem;min-width:110px}.theme-helper .abc-radio-pending input[type="radio"]:not(:checked)+label::before{background-color:#fda700}.theme-helper .abc-radio-secondary input[type="radio"]:not(:checked)+label::before{background-color:#798892}.mb-xlg{margin-bottom:40px}.mb-lg{margin-bottom:0.1rem}.mb-0{margin-bottom:0}.p-0{padding:0}.fw-semi-bold{font-weight:600}.fw-normal{font-weight:400}
+        @media print{.content-wrap{position:static}.content{margin:0;padding:0}.table,.table td,.table th{background:#fff !important;border:none !important}.table td{border-top:1px solid #798892 !important}}
+        @font-face{font-family:'Glyphicons Halflings';src:url("../fonts/glyphicons-halflings-regular.eot");src:url("../fonts/glyphicons-halflings-regular.eot?#iefix") format("embedded-opentype"),url("../fonts/glyphicons-halflings-regular.woff2") format("woff2"),url("../fonts/glyphicons-halflings-regular.woff") format("woff"),url("../fonts/glyphicons-halflings-regular.ttf") format("truetype"),url("../fonts/glyphicons-halflings-regular.svg#glyphicons_halflingsregular") format("svg")}
+        @font-face{font-family:"Flaticon";src:url("../fonts/flaticon/Flaticon.eot");src:url("../fonts/flaticon/Flaticon.eot?#iefix") format("embedded-opentype"),url("../fonts/flaticon/Flaticon.woff") format("woff"),url("../fonts/flaticon/Flaticon.ttf") format("truetype"),url("../fonts/flaticon/Flaticon.svg#Flaticon") format("svg");font-weight:normal;font-style:normal}
+        @media screen and (-webkit-min-device-pixel-ratio: 0){@font-face{font-family:"Flaticon";src:url("../fonts/flaticon/Flaticon.svg#Flaticon") format("svg")}}          
+       /* Donut */
+        .charts{margin:0;padding:0;height:100%;min-height:auto}.tests{width:100%;height:100%;padding-right:10px;min-height:auto}.pie-chart{background-color:#fefefe;position:relative;min-height:300px;margin:0}.pie-chart h2{position:absolute;margin:1rem}.pie-chart figcaption{position:absolute;bottom:1em;right:1em;font-size:smaller;text-align:right}.pie-chart span:after{display:inline-block;content:"";width:.8em;height:.8em;margin-left:.4em;height:.8em;border-radius:.2em;background:currentColor}
+        /*button{-webkit-writing-mode:horizontal-tb!important;text-rendering:auto;letter-spacing:normal;word-spacing:normal;text-transform:none;text-indent:0;text-shadow:none;display:inline-block;text-align:center;align-items:flex-start;cursor:default;box-sizing:border-box;margin:0;font:400 13.3333px Arial;padding:1px 6px;border-width:2px;border-style:outset;border-color:#5fb3eb;border-image:initial}button,select{text-transform:none}button,input{overflow:visible}button,input,optgroup,select,textarea{font-family:inherit;font-size:100%;line-height:1.15;margin:0}*/
+        .suite--list{list-style-type:none;margin:0;padding:0}.suite--component{box-shadow:0 2px 5px 0 rgba(0,0,0,.16),0 2px 10px 0 rgba(0,0,0,.12);margin:0 0 24px}.suite--header{border-bottom:1px solid #ccc}.suite--header-btn{background:#fff;border:none;cursor:pointer;padding:12px 16px;text-align:left;width:100%}.suite--title{display:-webkit-flex;display:flex;font-size:21px;margin:0}.test--list{list-style-type:none;margin:0;padding:0}ul.test--list.passed{border-left:3px solid #26b526;color:#26b526}
+        h4.passed:before{content:'\2714\0020'}ul.test--list.failed{border-left:3px solid red;color:#fa0f36}h4.failed:before{content:'\2718\0020'}ul.test--list.pending{border-left:3px solid orange;color:#f7bd1e}h4.pending:before{content:'\26AC\0020'}.test--component{padding:4px;border-bottom:1px solid #ccc}.test--title{line-height:1.5;padding-top:3px;white-space:normal}.test--body-wrap,.test--header-btn{border-left-color:#4caf50;border-left-color:var(--green500)}.test--header-btn{display:-webkit-flex;display:flex;position:relative;background:#fff;border:none;border-left:3px solid transparent;cursor:pointer;-webkit-flex-wrap:wrap;flex-wrap:wrap;padding:10px 16px 10px 13px;transition:border-color .2s ease-out;width:100%;color:currentColor}.test--body-wrap{border-left:3px solid transparent;transition:border-color .2s ease-out}.test--body{background-color:#fafafa;border:1px solid var(--grey50);border-radius:4px}.test--code-snippet{position:relative;font-size:11px;margin:0;border-radius:0;padding:1em;background:0 0;display:block;overflow-x:auto;color:#383A42}details{display:block}.test--body img{max-width: 100%}
+        .clock{text-align:right; }.clock:after{content:' \0023F1 ';}
+        .expand-button {position: relative;vertical-align:middle}
+        .accordion-toggle .expand-button:after{position: absolute;transform: translate(0, -50%); content:' - ';}
+        .accordion-toggle.collapsed .expand-button:after{content:' + ';}
+        .collapse:not(.show){display:none}.collapsing{position:relative;height:0;overflow:hidden;transition:height 0.35s ease}.show{display:block}
+        /* .collapse{display:none}.collapse.in{display:block}tr.collapse.in{display:table-row}tbody.collapse.in{display:table-row-group}*/
+        /* CSS for the main interaction */
+        .tabset>input[type=radio]{position:absolute;left:-200vw}.tabset .tab-panel{display:none}.tabset>input:first-child:checked~.tab-panels>.tab-panel:first-child,.tabset>input:nth-child(11):checked~.tab-panels>.tab-panel:nth-child(6),.tabset>input:nth-child(3):checked~.tab-panels>.tab-panel:nth-child(2),.tabset>input:nth-child(5):checked~.tab-panels>.tab-panel:nth-child(3),.tabset>input:nth-child(7):checked~.tab-panels>.tab-panel:nth-child(4),.tabset>input:nth-child(9):checked~.tab-panels>.tab-panel:nth-child(5){display:block}.tabset>label{position:relative;display:inline-block;padding:15px 15px 25px;border:1px solid transparent;border-bottom:0;cursor:pointer;font-weight:600}.tabset>label::after{content:"";position:absolute;left:15px;bottom:10px;width:22px;height:4px;background:#8d8d8d}.tabset>input:focus+label,.tabset>label:hover{color:#3626c2}.tabset>input:checked+label::after,.tabset>input:focus+label::after,.tabset>label:hover::after{background:#3626c2}.tabset>input:checked+label{border-color:#ccc;border-bottom:1px solid #fff;margin-bottom:-1px}.tab-panel{padding:30px 0;border-top:1px solid #ccc}
+  - function time(ms) { return new Date(ms).toISOString().slice(11, -1);}
+  body
+    div.content-wrap
+        main#content.content
+            h1.page-title Rapport des tests automatisés 
+                small
+                    small Sesame v5
+            div.tabset
+                input(type="radio" name="tabset" id="tab1" aria-controls="summary" checked)
+                label(for="tab1") Résumé
+                input(type="radio" name="tabset" id="tab2" aria-controls="details")
+                label(for="tab2") Détails
+                div.tab-panels
+                    section(id="summary" class="tab-panel")
+                        div.analytics
+                            div.row
+                                div.col-xl-2.col-md-4.mb-xlg
+                                    div.pb-xlg.h-100
+                                        section(class="widget mb-0 h-100" style="border-bottom: 8px solid #3626c2;")
+                                            header
+                                                h5 Scenarios
+                                            div.widget-body
+                                                div.d-flex.justify-content-between.align-items-center.mb-lg
+                                                    h2 #{run_suites}
+                                                p.text-muted.mb-0 #{run_numerator} 
+                                                    small steps
+                                div.col-xl-2.col-md-4.mb-xlg
+                                    div.pb-xlg.h-100
+                                        section(class="widget mb-0 h-100" style="border-bottom: 8px solid #26b526;")
+                                            header
+                                                h5 Succès
+                                            div.widget-body
+                                                div.d-flex.justify-content-between.align-items-center.mb-lg
+                                                    h2 #{pass_percent} %
+                                                p.text-muted.mb-0 #{pass_numerator} 
+                                                    small steps
+                                div.col-xl-2.col-md-4.mb-xlg
+                                    div.pb-xlg.h-100
+                                        section(class="widget mb-0 h-100" style="border-bottom: 8px solid #fa0f36;")
+                                            header
+                                                h5 Echecs
+                                            div.widget-body
+                                                div.d-flex.justify-content-between.align-items-center.mb-lg
+                                                    h2 #{fail_percent} %
+                                                p.text-muted.mb-0 #{fail_numerator} 
+                                                    small steps
+                                div.col-xl-2.col-md-4.mb-xlg
+                                    div.pb-xlg.h-100
+                                        section(class="widget mb-0 h-100" style="border-bottom: 8px solid #f7bd1e;")
+                                            header
+                                                h5 Non exécutés
+                                            div.widget-body
+                                                div.d-flex.justify-content-between.align-items-center.mb-lg
+                                                    h2 #{pending_percent} %
+                                                p.text-muted.mb-0 #{pending_numerator} 
+                                                    small steps
+                                div.col-xl-2.col-md-4.mb-xlg
+                                    div.pb-xlg.h-100
+                                        section(class="widget mb-0 h-100" style="border-bottom: 8px solid #666;")
+                                            header
+                                                h5 Ignorés
+                                            div.widget-body
+                                                div.d-flex.justify-content-between.align-items-center.mb-lg
+                                                    h2 #{skip_percent} %
+                                                p.text-muted.mb-0 #{skip_numerator} 
+                                                    small steps
+                                div.col-6
+                                    section.widget.mb-xlg
+                                        header.row
+                                            h4.col-sm-6 Répartition graphique des tests
+                                        div.widget-body
+                                            div#main-chart(style="width: 100%;")
+                                                figure.pie-chart(style='background:radial-gradient(circle closest-side,white 0,white 37.6%,transparent 37.6%,transparent 80%,white 0),conic-gradient('+chart_passed+chart_failed+chart_pending+chart_skipped+');')
+                                                    figcaption
+                                                        | Succès #{pass_percent}% 
+                                                        span(style="color:#26b526")
+                                                        br
+                                                        | Echecs #{fail_percent}% 
+                                                        span(style="color:#de3f3f")
+                                                        br 
+                                                        | Non exécutés #{pending_percent}% 
+                                                        span(style="color:#fdb563")
+                                                        br 
+                                                        | Ignorés #{skip_percent}% 
+                                                        span(style="color:#666")
+                                div.col-sm-12.col-lg-6.col-xl-4.mb-xlg
+                                    div.pb-xlg.h-100
+                                        section.widget.mb-0.h-100
+                                            header.d-flex.justify-content-between.flex-wrap
+                                                h4.d-flex.align-items-center.pb-1.big-stat-title Informations
+                                            div.widget-body
+                                                div
+                                                    span Exécution : 
+                                                        span.clock= time(duration)
+                                                        ul
+                                                            li Début : #{daterun_start}
+                                                            li Fin : #{daterun_end}
+                                                div
+                                                    span Environnement :
+                                                        ul
+                                                            li OS : #{opsys}
+                                div.col-10.mb-lg
+                                    div.widget.pb-0
+                                        header
+                                            h4 #{testsListLabel}
+                                        div.widget-body.p-0.support.table-wrapper
+                                            table.table.table-striped.mb-0
+                                                thead
+                                                    tr.text-muted
+                                                        th(scope="col") #
+                                                        th(scope="col")
+                                                            span.pl-3 Nom du scenario
+                                                        th(scope="col") Durée
+                                                        th(scope="col") Statut
+                                                tbody.text-dark
+                                                    for result in results
+                                                        for suites in result.suites
+                                                            if suites.failures != 0
+                                                                tr(class="accordion-toggle collapsed" style="cursor: pointer;" id=result.uuid data-toggle="collapse" data-parent="#"+result.uuid href="#"+suites.uuid)
+                                                                    td.expand-button
+                                                                    th.pl-4.fw-normal= suites.title
+                                                                        br
+                                                                        small= result.file
+                                                                    td.clock= time(suites.duration)
+                                                                    td 
+                                                                        if suites.failures != 0
+                                                                            button.btn.btn-xs.p-1.px-3(class='btn-failed') Echec
+                                                                        else
+                                                                            button.btn.btn-xs.p-1.px-3(class='btn-passed') Succès
+                                                                tr(style="padding: 0;" class="collapse" id=suites.uuid)
+                                                                    td(colspan="4" )
+                                                                        div
+                                                                            for test in suites.tests
+                                                                                ul.test--list(class=test.state)
+                                                                                    li.test--component
+                                                                                        header
+                                                                                            - var expandedValue = ''
+                                                                                            if test.state=="failed" 
+                                                                                                - var expandedValue = 'open'
+
+                                                                                            <details #{expandedValue}>
+                                                                                                summary(role="button" tabindex="0")
+                                                                                                    span.test--title(class=test.state)= test.title
+                                                                                                .test--body-wrap
+                                                                                                    .test--body
+                                                                                                        pre
+                                                                                                            code.test--code-snippet= test.code
+                                                                                                        if test.err.message
+                                                                                                            span Erreur :
+                                                                                                            pre
+                                                                                                                code.test--code-snippet= test.err.message
+                                                                                                            if test.context!=null
+                                                                                                                a(href=test.context.replace(/"/g, '')) Capture écran #[br]
+                                                                                                                img(src=test.context.replace(/"/g, ''))
+                                                            
+                    section(id="details" class="tab-panel")
+                        div.analytics
+                            div.row
+                                div.col-10.mb-lg
+                                    div.widget.pb-0
+                                        if ( infos=='failedOnly' && fail_numerator==0)
+                                            header 
+                                                h4 Pas de tests en échec
+                                        header
+                                            h4 Liste des tests exécutés
+                                        div.widget-body.p-0.support.table-wrapper
+                                            table.table.table-striped.mb-0
+                                                thead
+                                                    tr.text-muted
+                                                        th(scope="col") #
+                                                        th(scope="col")
+                                                            span.pl-3 Nom du scenario
+                                                        th(scope="col") Durée
+                                                        th(scope="col") Statut
+                                                tbody.text-dark
+                                                    for result in results
+                                                        for suites in result.suites
+                                                            tr
+                                                                td
+                                                                th.pl-4.fw-normal= suites.title
+                                                                    br
+                                                                    small= result.file
+                                                                td.clock= time(suites.duration)
+                                                                td 
+                                                                    if suites.failures != 0
+                                                                        button.btn.btn-xs.p-1.px-3(class='btn-failed') Echec
+                                                                    else
+                                                                        button.btn.btn-xs.p-1.px-3(class='btn-passed') Succès
+                                                            
+            footer.content-footer
