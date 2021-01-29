@@ -1,0 +1,28 @@
+{
+  "name": "mocha-reporter",
+  "version": "1.0.0",
+  "description": "Merge several Mochawesome JSON reports and generate html report",
+  "bin": {
+    "mocha-reporter": "bin/mocha-reporter.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nicoaugereau/mocha-reporter.git"
+  },
+  "keywords": [],
+  "author": "Nicolas Augereau",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/nicoaugereau/mocha-reporter/issues"
+  },
+  "homepage": "https://github.com/nicoaugereau/mocha-reporter#readme",
+  "dependencies": {
+    "fs-extra": "^9.0.1",
+    "glob": "^7.1.6",
+    "path": "^0.12.7",
+    "pug": "^3.0.0"
+  }
+}
