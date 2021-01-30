@@ -168,7 +168,6 @@ html(lang='en')
                                             table.table.table-striped.mb-0
                                                 thead
                                                     tr.text-muted
-                                                        th(scope="col") #
                                                         th(scope="col")
                                                             span.pl-3 Nom du scenario
                                                         th(scope="col") Durée
@@ -177,8 +176,7 @@ html(lang='en')
                                                     for result in results
                                                         for suites in result.suites
                                                             if suites.failures != 0
-                                                                tr(class="accordion-toggle collapsed" style="cursor: pointer;" id=result.uuid data-toggle="collapse" data-parent="#"+result.uuid href="#"+suites.uuid)
-                                                                    td.expand-button
+                                                                tr
                                                                     th.pl-4.fw-normal= suites.title
                                                                         br
                                                                         small= result.file
@@ -188,38 +186,41 @@ html(lang='en')
                                                                             button.btn.btn-xs.p-1.px-3(class='btn-failed') Echec
                                                                         else
                                                                             button.btn.btn-xs.p-1.px-3(class='btn-passed') Succès
-                                                                tr(style="padding: 0;" class="collapse" id=suites.uuid)
-                                                                    td(colspan="4" )
-                                                                        div
-                                                                            for test in suites.tests
-                                                                                ul.test--list(class=test.state)
-                                                                                    li.test--component
-                                                                                        header
-                                                                                            - var expandedValue = ''
-                                                                                            if test.state=="failed" 
-                                                                                                - var expandedValue = 'open'
+                                                                tr
+                                                                    td(colspan="3" style="margin: 0;padding: 0")
+                                                                        ul(style="margin: 0;padding: 0 20px 0 20px;")
+                                                                            header
+                                                                                <details open>
+                                                                                    div
+                                                                                        for test in suites.tests
+                                                                                            ul.test--list(class=test.state)
+                                                                                                li.test--component
+                                                                                                    header
+                                                                                                        - var expandedValue = ''
+                                                                                                        if test.state=="failed" 
+                                                                                                            - var expandedValue = 'open'
 
-                                                                                            <details #{expandedValue}>
-                                                                                                summary(role="button" tabindex="0")
-                                                                                                    span.test--title(class=test.state)= test.title
-                                                                                                .test--body-wrap
-                                                                                                    .test--body
-                                                                                                        pre
-                                                                                                            code.test--code-snippet= test.code
-                                                                                                        if test.err.message
-                                                                                                            span Erreur :
-                                                                                                            pre
-                                                                                                                code.test--code-snippet= test.err.message
-                                                                                                            if test.context!=null
-                                                                                                                a(href=test.context.replace(/"/g, '')) Capture écran #[br]
-                                                                                                                img(src=test.context.replace(/"/g, ''))
+                                                                                                        <details #{expandedValue}>
+                                                                                                            summary(role="button" tabindex="0")
+                                                                                                                span.test--title(class=test.state)= test.title
+                                                                                                            .test--body-wrap
+                                                                                                                .test--body
+                                                                                                                    pre
+                                                                                                                        code.test--code-snippet= test.code
+                                                                                                                    if test.err.message
+                                                                                                                        span Erreur :
+                                                                                                                        pre
+                                                                                                                            code.test--code-snippet= test.err.message
+                                                                                                                        if test.context!=null
+                                                                                                                            a(href=test.context.replace(/"/g, '')) Capture écran #[br]
+                                                                                                                            img(src=test.context.replace(/"/g, ''))
                                                             
                     section(id="details" class="tab-panel")
                         div.analytics
                             div.row
                                 div.col-10.mb-lg
                                     div.widget.pb-0
-                                        if ( infos=='failedOnly' && fail_numerator==0)
+                                        if (fail_numerator==0)
                                             header 
                                                 h4 Pas de tests en échec
                                         header
@@ -228,7 +229,6 @@ html(lang='en')
                                             table.table.table-striped.mb-0
                                                 thead
                                                     tr.text-muted
-                                                        th(scope="col") #
                                                         th(scope="col")
                                                             span.pl-3 Nom du scenario
                                                         th(scope="col") Durée
@@ -237,7 +237,6 @@ html(lang='en')
                                                     for result in results
                                                         for suites in result.suites
                                                             tr
-                                                                td
                                                                 th.pl-4.fw-normal= suites.title
                                                                     br
                                                                     small= result.file
@@ -247,5 +246,33 @@ html(lang='en')
                                                                         button.btn.btn-xs.p-1.px-3(class='btn-failed') Echec
                                                                     else
                                                                         button.btn.btn-xs.p-1.px-3(class='btn-passed') Succès
+                                                            tr
+                                                                td(colspan="3" style="margin: 0;padding: 0")
+                                                                    ul(style="margin: 0;padding: 0 20px 0 20px;")
+                                                                        header
+                                                                            <details>
+                                                                                div
+                                                                                    for test in suites.tests
+                                                                                        ul.test--list(class=test.state)
+                                                                                            li.test--component
+                                                                                                header
+                                                                                                    - var expandedValue = ''
+                                                                                                    if test.state=="failed" 
+                                                                                                        - var expandedValue = 'open'
+
+                                                                                                    <details #{expandedValue}>
+                                                                                                        summary(role="button" tabindex="0")
+                                                                                                            span.test--title(class=test.state)= test.title
+                                                                                                        .test--body-wrap
+                                                                                                            .test--body
+                                                                                                                pre
+                                                                                                                    code.test--code-snippet= test.code
+                                                                                                                if test.err.message
+                                                                                                                    span Erreur :
+                                                                                                                    pre
+                                                                                                                        code.test--code-snippet= test.err.message
+                                                                                                                    if test.context!=null
+                                                                                                                        a(href=test.context.replace(/"/g, '')) Capture écran #[br]
+                                                                                                                        img(src=test.context.replace(/"/g, ''))
                                                             
             footer.content-footer
