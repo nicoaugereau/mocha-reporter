@@ -1,6 +1,6 @@
 # mocha-reporter
 
-Merge several [Mochawesome](https://github.com/adamgruber/mochawesome) JSON reports and generate html report like [Mochawesome-report-generator](https://github.com/adamgruber/mochawesome-report-generator) but little bit different.
+Merge several [Mochawesome](https://github.com/adamgruber/mochawesome) JSON reports and generate html report like [Mochawesome-report-generator](https://github.com/adamgruber/mochawesome-report-generator) but little bit different. No js and no external link.s
 
 ## Installation
 
@@ -33,7 +33,7 @@ merge(options)
 ### CLI
 
 ```
-$ npx mocha-reporter -f ./report/*.json -r report/mocha-reporter -i failedOnly
+$ npx mocha-reporter -f ./report/*.json -r report/mocha-reporter
 ```
 
 You can specify as many paths as you wish:
@@ -51,11 +51,6 @@ $ npx mocha-reporter -f ./report/*.json ./mochawesome-report/*.json r report/moc
 - `reportDir`: a file path to the bundled results. Should be a `json` file 
 - Aliases: `-r | --reportDir`
 - Defaults to `stdout`.
-#
-- `infos`: `summary`, `failedOny` (with summary), or full report.
-- Aliases: `-i| --infos`
-- Defaults to full report`.
-
 
 ## [Cypress](https://github.com/cypress-io/cypress)
 
@@ -72,8 +67,6 @@ First, configure `cypress.json`:
   "reporterOptions": {
     // path to generate report.json and report.html
     "reportDir": "mocha/mochareports/",
-    // generate summary report only
-    "infos": "summary"
   }
 }
 ```
