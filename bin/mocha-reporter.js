@@ -25,12 +25,6 @@ yargs
     describe: 'Input files',
     type: 'array',
   })
-  .option('i', {
-    alias: 'infos',
-    demandOption: false,
-    describe: 'Report informations. Available: summary or failedOnly. If not set, all details',
-    type: 'string',
-  })
   .help()
 
 const { files, reportDir, infos } = yargs.argv
