@@ -1,5 +1,7 @@
 # mocha-reporter
 
+<img align="right" src="./img/mocha-reporter1.0.0.png" alt="Mocha Reporter" width="55%" />
+
 Merge several [Mochawesome](https://github.com/adamgruber/mochawesome) JSON reports and generate html report like [Mochawesome-report-generator](https://github.com/adamgruber/mochawesome-report-generator) but little bit different. No js and no external link.s
 
 ## Installation
