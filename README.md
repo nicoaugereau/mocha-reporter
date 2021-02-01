@@ -1,6 +1,6 @@
 # mocha-reporter
 
-<img align="right" src="./img/mocha-reporter1.0.0.png" alt="Mocha Reporter" width="55%" />
+<img align="right" src="./img/mocha-reporter1.0.0.png" alt="Mocha Reporter" width="50%" />
 
 Merge several [Mochawesome](https://github.com/adamgruber/mochawesome) JSON reports and generate html report like [Mochawesome-report-generator](https://github.com/adamgruber/mochawesome-report-generator) but little bit different. No js and no external links
 
@@ -36,6 +36,27 @@ const options = {
     // you can specify more files or globs if necessary:
     './mochawesome-report/*.json',
   ],
+  metadata:{
+    browser: {
+      name: 'electron',
+      version: '87'
+    },
+    device: {
+      name: 'iphone 12',
+      version: '14.4'
+    },
+    platform: {
+      name: 'Windows',
+      version: '10'
+    }
+  },
+  customData: {
+    title: 'My application',
+    data: [
+      {label: 'Project', value: 'My project v1'},
+      {label: 'Release', value: '2021.2'},
+    ]
+  }
 }
 
 merge(options)
