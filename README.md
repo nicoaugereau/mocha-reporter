@@ -42,12 +42,12 @@ const options = {
       version: '87'
     },
     device: {
-      name:'iphone 12',
+      name: 'iphone 12',
       version: '14.4'
     },
     platform: {
-      name: opsys,
-      version: ''
+      name: 'Windows,
+      version: '10'
     }
   },
   customData: {
