@@ -36,6 +36,13 @@ const options = {
     // you can specify more files or globs if necessary:
     './mochawesome-report/*.json',
   ],
+  customData: {
+    title: 'My application name',
+    data: [
+      {label: 'Project', value: projectName},
+      {label: 'Release', value: projectRelease}
+    ]
+  }
 }
 
 merge(options)
