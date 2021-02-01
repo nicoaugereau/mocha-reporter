@@ -21,7 +21,7 @@ via `npm`:
 $ npm install mocha-reporter --save-dev
 ```
 
-# Writing tests
+## Writing tests
 
 In order to obtain the correct number of scenarios, it is best to write the tests like this: 
 
