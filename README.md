@@ -21,6 +21,20 @@ via `npm`:
 $ npm install mocha-reporter --save-dev
 ```
 
+# Writing tests
+
+In order to obtain the correct number of scenarios, it is best to write the tests like this: 
+
+```
+describe('My scenario. Use describe or context', () => {
+  it('My first test, or step', () => {
+  })
+  it('My second test', () => {
+  })
+})
+```
+You can write 1 scenario per file, or several scenarios per file.
+
 ## Examples
 
 ### JavaScript API
