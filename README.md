@@ -51,7 +51,7 @@ const options = {
     }
   },
   customData: {
-    title: 'DTD Adhésion',
+    title: 'My application',
     data: [
       {label: 'Project', value: 'My project v1'},
       {label: 'Release', value: '2021.2'},
