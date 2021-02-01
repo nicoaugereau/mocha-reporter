@@ -100,6 +100,27 @@ First, configure `cypress.json`:
     // path to generate report.json and report.html
     "reportDir": "mocha/mochareports/",
   }
+  "metadata":{
+    "browser": {
+      "name": "electron",
+      "version": "87"
+    },
+    "device": {
+      "name": "iphone 12",
+      "version": "14.4"
+    },
+    "platform": {
+      "name": "Windows",
+      "version": "10"
+    }
+  },
+  "customData": {
+    "title": "My application",
+    "data": [
+      {"label": "Project", "value": "My project v1"},
+      {"label": "Release", "value": "2021.2"}
+    ]
+  }
 }
 ```
 
@@ -109,9 +130,21 @@ Then, write your custom script to run `cypress` together with `mochawesome-merge
 const cypress = require('cypress')
 const { merge } = require('mocha-reporter')
 
+/* 
+You can add cypress.json file to constant :
+const { reporterOptions } = require('./cypress.json')
+
+or add reporterOptions constant :
+const reporterOptions = {
+  "reportDir": "mocha/mochareports/",
+  "metadata":{},
+  "customData": {}
+}
+*/
+
 cypress.run().then(
   () => {
-    generateReport(options)
+    generateReport(reporterOptions)
   },
   error => {
     generateReport()
@@ -120,7 +153,7 @@ cypress.run().then(
   }
 )
 
-function generateReport() {
-  return merge()
+function generateReport(reporterOptions) {
+  return merge(reporterOptions)
 }
 ```
