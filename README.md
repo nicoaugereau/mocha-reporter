@@ -2,7 +2,16 @@
 
 <img align="right" src="./img/mocha-reporter1.0.0.png" alt="Mocha Reporter" width="55%" />
 
-Merge several [Mochawesome](https://github.com/adamgruber/mochawesome) JSON reports and generate html report like [Mochawesome-report-generator](https://github.com/adamgruber/mochawesome-report-generator) but little bit different. No js and no external link.s
+Merge several [Mochawesome](https://github.com/adamgruber/mochawesome) JSON reports and generate html report like [Mochawesome-report-generator](https://github.com/adamgruber/mochawesome-report-generator) but little bit different. No js and no external links
+
+## Features
+
+- Summary tab with graph, informations and failed tests list 
+- Details tab with all tests
+- Test informations status and duration
+- Test code for each step
+- Test screenshot if failed
+
 
 ## Installation
 
