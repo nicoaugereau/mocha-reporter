@@ -99,7 +99,7 @@ First, configure `cypress.json`:
   "reporterOptions": {
     // path to generate report.json and report.html
     "reportDir": "mocha/mochareports/",
-  }
+  },
   "metadata":{
     "browser": {
       "name": "electron",
