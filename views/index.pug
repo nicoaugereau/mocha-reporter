@@ -63,9 +63,9 @@ html(lang='en')
   body
     div.content-wrap
         main#content.content
-            h1.page-title Automated tests repport 
+            h1.page-title Automated tests report 
                 small
-                    small Your application name
+                    small #{stats.title}
             div.tabset
                 input(type="radio" name="tabset" id="tab1" aria-controls="summary" checked)
                 label(for="tab1") Summary
@@ -109,7 +109,7 @@ html(lang='en')
                                     div.pb-xlg.h-100
                                         section(class="widget mb-0 h-100" style="border-bottom: 8px solid #f7bd1e;")
                                             header
-                                                h5 Non execute
+                                                h5 Not executed
                                             div.widget-body
                                                 div.d-flex.justify-content-between.align-items-center.mb-lg
                                                     h2 #{pending_percent} %
@@ -139,7 +139,7 @@ html(lang='en')
                                                         | Failed #{fail_percent}% 
                                                         span(style="color:#de3f3f")
                                                         br 
-                                                        | Non execute #{pending_percent}% 
+                                                        | Not executed #{pending_percent}% 
                                                         span(style="color:#fdb563")
                                                         br 
                                                         | Ignored #{skip_percent}% 
@@ -150,16 +150,28 @@ html(lang='en')
                                             header.d-flex.justify-content-between.flex-wrap
                                                 h4.d-flex.align-items-center.pb-1.big-stat-title Informations
                                             div.widget-body
+                                                if stats.data != null
+                                                    div
+                                                        p
+                                                            for data in stats.data
+                                                                span= data.label + ' ' + data.value
+                                                                br
                                                 div
-                                                    span Execution : 
-                                                        span.clock= msToTime(duration, h)
+                                                    span Execution: 
+                                                        span.clock= msToTime(stats.duration, h)
                                                         ul
-                                                            li Start : #{daterun_start}
-                                                            li End : #{daterun_end}
-                                                div
-                                                    span Environment :
-                                                        ul
-                                                            li OS : #{opsys}
+                                                            li Start: #{daterun_start}
+                                                            li End: #{daterun_end}
+                                                if meta.browser != null || meta.device != null || meta.platform != null
+                                                    div
+                                                        span Environment:
+                                                            ul
+                                                                if meta.browser != null
+                                                                    li Browser: #{meta.browser.name}, version #{meta.browser.version}
+                                                                if meta.device != null
+                                                                    li Device: #{meta.device.name}, version #{meta.device.version}
+                                                                if meta.platform != null
+                                                                    li Platform: #{meta.platform.name}, version #{meta.platform.version}
                                 div.col-10.mb-lg
                                     div.widget.pb-0
                                         header
@@ -180,7 +192,7 @@ html(lang='en')
                                                                     th.pl-4.fw-normal= suites.title
                                                                         br
                                                                         small= result.file
-                                                                    td.clock= msToTime(suites.duration, m)
+                                                                    td.clock= msToTime(stats.duration, m)
                                                                     td 
                                                                         if suites.failures != 0
                                                                             button.btn.btn-xs.p-1.px-3(class='btn-failed') Failed
@@ -240,7 +252,7 @@ html(lang='en')
                                                                 th.pl-4.fw-normal= suites.title
                                                                     br
                                                                     small= result.file
-                                                                td.clock= msToTime(suites.duration)
+                                                                td.clock= msToTime(stats.duration)
                                                                 td 
                                                                     if suites.failures != 0
                                                                         button.btn.btn-xs.p-1.px-3(class='btn-failed') Failed
@@ -274,5 +286,4 @@ html(lang='en')
                                                                                                                     if test.context!=null
                                                                                                                         a(href=test.context.replace(/"/g, '')) Screen capture #[br]
                                                                                                                         img(src=test.context.replace(/"/g, ''))
-                                                            
             footer.content-footer
