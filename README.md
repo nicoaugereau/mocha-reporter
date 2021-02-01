@@ -36,11 +36,25 @@ const options = {
     // you can specify more files or globs if necessary:
     './mochawesome-report/*.json',
   ],
+  metadata:{
+    browser: {
+      name: 'electron',
+      version: '87'
+    },
+    device: {
+      name:'iphone 12',
+      version: '14.4'
+    },
+    platform: {
+      name: opsys,
+      version: ''
+    }
+  },
   customData: {
-    title: 'My application name',
+    title: 'DTD Adhésion',
     data: [
-      {label: 'Project', value: projectName},
-      {label: 'Release', value: projectRelease}
+      {label: 'Project', value: 'My project v1'},
+      {label: 'Release', value: '2021.2'},
     ]
   }
 }
