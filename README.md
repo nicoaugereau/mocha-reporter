@@ -46,7 +46,7 @@ const options = {
       version: '14.4'
     },
     platform: {
-      name: 'Windows,
+      name: 'Windows',
       version: '10'
     }
   },
