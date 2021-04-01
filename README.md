@@ -102,7 +102,7 @@ $ npx mocha-reporter -f ./report/*.json ./mochawesome-report/*.json r report/moc
 
 The motivation to create this custom report is tu use [mochawesome](https://github.com/adamgruber/mochawesome) together with [Cypress](https://github.com/cypress-io/cypress) and to bypass some technical constraints.
 
-Since the version `3.0.0`, Cypress runs every spec separately, which leads to generating multiple mochawesome reports, one for each spec. `mochawesome-merge` can be used to merge these reports and then generate one HTML report for all your cypress tests.
+Since the version `3.0.0`, Cypress runs every spec separately, which leads to generating multiple mochawesome reports, one for each spec. `mocha-reporter` can be used to merge these reports and then generate one HTML report for all your cypress tests.
 
 First, configure `cypress.json`:
 
@@ -138,7 +138,7 @@ First, configure `cypress.json`:
 }
 ```
 
-Then, write your custom script to run `cypress` together with `mochawesome-merge`:
+Then, write your custom script to run `cypress` together with `mocha-reporter`:
 
 ```javascript
 const cypress = require('cypress')
