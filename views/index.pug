@@ -192,7 +192,7 @@ html(lang='en')
                                                                     th.pl-4.fw-normal= suites.title
                                                                         br
                                                                         small= result.file
-                                                                    td.clock= msToTime(stats.duration, m)
+                                                                    td.clock= msToTime(suites.duration, m)
                                                                     td 
                                                                         if suites.failures != 0
                                                                             button.btn.btn-xs.p-1.px-3(class='btn-failed') Failed
